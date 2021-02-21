@@ -1,4 +1,4 @@
-import {getCurrencyFormattedNumber, isInt, scrubFormatting, getFormattedNumber} from './numberFormat';
+import {getCurrencyFormattedNumber, isInt, scrubFormatting, getFormattedNumber, padLeft} from './numberFormat';
 
 describe('Number Formatter', () => {
   describe('getCurrencyFormattedNumber', () => {
@@ -36,4 +36,26 @@ describe('Number Formatter', () => {
       expect(getFormattedNumber('')).toEqual('');
     });
   });
+
+  describe('padLeft', () => {
+    it('Returns 000 if passed 0', () => {
+        expect(padLeft(0)).toEqual('000');
+    });
+
+    it('Returns 000 for non numeric data types', () => {
+      const dataset = [null, undefined, '123123123'];
+      const areZeroes = dataset.every(dt => padLeft(dt) === '000')
+
+      expect(areZeroes).toEqual(true);
+    });
+
+    // it('Returns 00[number] when a decimal type its passed', () => {
+    //   expect(padLeft(3.14)).toEqual('003');
+    // });
+
+    // it('Returns positive index number when a negative number its passed', () => {
+    //     expect(padLeft(-4)).toEqual('004');
+    // });
+
+  })
 });

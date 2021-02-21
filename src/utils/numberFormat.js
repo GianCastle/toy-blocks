@@ -48,6 +48,14 @@ export function isInt(n) {
   return n % 1 === 0;
 }
 
+export function padLeft(n) {
+  if(!Number.isFinite(n)) return '000';
+  if(n === 0) return '000';
+  const absValue = parseInt(Math.abs(n)).toString();
+
+  return absValue.padLeft(3, '0');
+}
+
 export function scrubFormatting(value) {
   return value.toString().replace('$', '').replace(',', '').replace('.', '');
 }
